@@ -83,7 +83,7 @@ public class SinglyLinkedList<T extends Comparable> {
     public boolean contains(T value){
         Node<T> currentNode = getHead();
         while(currentNode != null){
-            if(currentNode.getValue() == value) return true;
+            if(currentNode.getValue().equals(value)) return true;
             currentNode = currentNode.getNextNode();
         }
         return false;
