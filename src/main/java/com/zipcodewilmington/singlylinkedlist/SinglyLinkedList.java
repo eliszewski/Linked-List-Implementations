@@ -1,5 +1,7 @@
 package com.zipcodewilmington.singlylinkedlist;
 
+import java.util.Objects;
+
 /**
  * Created by leon on 1/10/18.
  */
@@ -63,9 +65,9 @@ public class SinglyLinkedList<T extends Comparable> {
         if(getHead() == null) setHead(node);
         else {
             this.tail.setNextNode(node);
-            this.setTail(node);
-            this.setSize(size++);
         }
+        this.setTail(node);
+        size++;
     }
     public T get(int index) {
         int counter = 0;
@@ -88,7 +90,7 @@ public class SinglyLinkedList<T extends Comparable> {
         Node<T> currentNode = head;
         int index = 0;
         while(currentNode != null){
-            if(currentNode.equals(valueToFind)) return index;
+            if(currentNode.getValue().equals(valueToFind)) return index;
             else{
                 index++;
                 currentNode = currentNode.getNextNode();
@@ -126,7 +128,46 @@ public class SinglyLinkedList<T extends Comparable> {
                 currentNode.setNextNode(currentNode.getNextNode().getNextNode());
             }
         }
-        setSize(size--);
+        size--;
+    }
+    //need an equals method
+
+    public boolean equals(SinglyLinkedList<T> sllToCompare){
+        Node<T> currentNode1 = this.head;
+        Node<T> currentNode2 = sllToCompare.getHead();
+        if(this.size()!= sllToCompare.size()) return false;
+        else {
+            while(currentNode1 != null){
+                if(!currentNode1.getValue().equals(currentNode2.getValue())) return false;
+                currentNode1 = currentNode1.getNextNode();
+                currentNode2 = currentNode2.getNextNode();
+            }
+            return true;
+        }
+    }
+    public void sort(){
+        boolean changed = false;
+        Node<T> current = this.head;
+        Node<T> next = current.getNextNode();
+        int n = this.size;
+        for(int i = 0; i < n ; i++){
+            while(next != null){ //till end of list
+                if(current.getValue().compareTo(next.getValue() ) > 0){
+                    //swap the values
+                     T temp = current.getValue();
+                    current.setValue(next.getValue());
+                    next.setValue(temp);
+                    changed = true;
+                }
+                //move to the next
+                current = next;
+                next = current.getNextNode();
+            }
+            // reset and iterate swap again
+            if(!changed) break; //if nothing was changed: array is sorted break
+            current = head;
+            next = current.getNextNode();
+        }
     }
 
 }
