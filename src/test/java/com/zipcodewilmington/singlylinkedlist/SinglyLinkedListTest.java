@@ -188,4 +188,38 @@ public class SinglyLinkedListTest {
         //then
         Assert.assertTrue(sll.equals(sllSorted));
     }
+    @Test
+    public void testReverse(){
+        //given
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(3);
+        sll.add(2);
+        sll.add(9);
+        sll.add(10);
+
+        SinglyLinkedList<Integer> sllRev = new SinglyLinkedList<Integer>();
+        sllRev.add(10);
+        sllRev.add(9);
+        sllRev.add(2);
+        sllRev.add(3);
+        //when
+        sll.reverse();
+        //then
+        Assert.assertTrue(sll.equals(sllRev));
+    }
+    @Test
+    public void testSplice(){
+        //given
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(4);
+        sll.add(5);
+        sll.add(6);
+        sll.add(8);
+
+        SinglyLinkedList<Integer> expected = new SinglyLinkedList<Integer>();
+        expected.add(5);
+        expected.add(6);
+        //when
+        SinglyLinkedList<Integer> actual = sll.slice(1,3);
+    }
 }

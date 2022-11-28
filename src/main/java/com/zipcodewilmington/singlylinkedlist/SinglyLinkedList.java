@@ -35,6 +35,8 @@ public class SinglyLinkedList<T extends Comparable> {
         this.size = size;
     }
 
+
+
     public class Node<T>{
         T value;
         Node<T> nextNode;
@@ -168,6 +170,33 @@ public class SinglyLinkedList<T extends Comparable> {
             current = head;
             next = current.getNextNode();
         }
+    }
+    public void reverse(){
+        Node<T> current = this.head;
+        Node<T> prev = null;
+        Node<T> next;
+        tail = head;
+        while(current != null){
+            next = current.getNextNode();
+            current.setNextNode(prev);
+            prev = current;
+            current = next;
+        }
+        this.head = prev;
+    }
+    public SinglyLinkedList<T> slice(int start, int end) {
+        SinglyLinkedList<T> sliced = new SinglyLinkedList<>();
+        Node<T> current = this.head;
+        int counter = 0;
+        while(counter <= start){
+            current = current.getNextNode();
+            counter ++;
+        }
+        while(counter < end){
+            sliced.add(current.getValue());
+            counter++;
+        }
+        return sliced;
     }
 
 }
