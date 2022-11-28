@@ -187,16 +187,12 @@ public class SinglyLinkedList<T extends Comparable> {
     public SinglyLinkedList<T> slice(int start, int end) {
         SinglyLinkedList<T> sliced = new SinglyLinkedList<>();
         Node<T> current = this.head;
-        int counter = 0;
-        while(counter <= start){
+        for(int i = 0 ;i < end; i++){
+            if(i >= start){
+                sliced.add(current.getValue());
+            }
             current = current.getNextNode();
-            counter ++;
-        }
-        while(counter < end){
-            sliced.add(current.getValue());
-            counter++;
         }
         return sliced;
     }
-
 }

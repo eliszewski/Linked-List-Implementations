@@ -221,5 +221,7 @@ public class SinglyLinkedListTest {
         expected.add(6);
         //when
         SinglyLinkedList<Integer> actual = sll.slice(1,3);
+        //then
+        Assert.assertTrue(expected.equals(actual));
     }
 }
