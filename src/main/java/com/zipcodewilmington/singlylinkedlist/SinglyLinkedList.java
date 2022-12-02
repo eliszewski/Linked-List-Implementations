@@ -112,13 +112,14 @@ public class SinglyLinkedList<T extends Comparable> {
         return theCopy;
     }
     public void remove(int index){
-        T valueToRemove = get(index);
+        int counter = 0;
         if(index == 0) this.setHead(head.nextNode); // 0 index case
         else {
             Node<T> currentNode = this.head;
             //iterate to the one before index
-            while (valueToRemove != currentNode.getNextNode().getValue()) {
+            while (counter != index - 1) {
                 currentNode = currentNode.getNextNode();
+                counter++;
             }
             //last index case
             if(currentNode.getNextNode().getNextNode() == null){
