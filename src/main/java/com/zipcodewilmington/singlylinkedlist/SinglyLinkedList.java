@@ -6,62 +6,23 @@ import java.util.Objects;
  * Created by leon on 1/10/18.
  */
 public class SinglyLinkedList<T extends Comparable> {
-    private Node head;
-    private Node tail;
+    private Node<T> head;
+    private Node<T> tail;
     private int size;
 
 
     public Node<T> getHead() {
-        return head;
+        return this.head;
     }
 
     public void setHead(Node<T> head) {
         this.head = head;
     }
 
-    public Node getTail() {
-        return tail;
-    }
-
-    public void setTail(Node tail) {
+    public void setTail(Node<T> tail) {
         this.tail = tail;
     }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-
-
-    public class Node<T>{
-        T value;
-        Node<T> nextNode;
-
-        public Node(T value) {
-            this.value = value;
-            this.nextNode = null; //set default to null
-        }
-
-        public T getValue() {
-            return value;
-        }
-
-        public void setValue(T value) {
-            this.value = value;
-        }
-
-        public Node<T> getNextNode() {
-            return nextNode;
-        }
-
-        public void setNextNode(Node<T> nextNode) {
-            this.nextNode = nextNode;
-        }
-    }
+    //
     public void add(T valueToAdd){
         Node<T> node = new Node<T>(valueToAdd);
         if(getHead() == null) setHead(node);
@@ -100,7 +61,7 @@ public class SinglyLinkedList<T extends Comparable> {
         }
         return -1;
     }
-    public int size(){return getSize();}
+    public int size(){return this.size;}
 
     public SinglyLinkedList<T> copy(){
         SinglyLinkedList<T> theCopy = new SinglyLinkedList<T>();
@@ -149,15 +110,15 @@ public class SinglyLinkedList<T extends Comparable> {
         }
     }
     public void sort(){
-        boolean changed = false;
         Node<T> current = this.head;
         Node<T> next = current.getNextNode();
         int n = this.size;
         for(int i = 0; i < n ; i++){
+            boolean changed = false;
             while(next != null){ //till end of list
                 if(current.getValue().compareTo(next.getValue() ) > 0){
                     //swap the values
-                     T temp = current.getValue();
+                    T temp = current.getValue();
                     current.setValue(next.getValue());
                     next.setValue(temp);
                     changed = true;
@@ -195,5 +156,30 @@ public class SinglyLinkedList<T extends Comparable> {
             current = current.getNextNode();
         }
         return sliced;
+    }
+    public static class Node<T>{
+        T value;
+        Node<T> nextNode;
+
+        public Node(T value) {
+            this.value = value;
+            this.nextNode = null; //set default to null
+        }
+
+        public T getValue() {
+            return value;
+        }
+
+        public void setValue(T value) {
+            this.value = value;
+        }
+
+        public Node<T> getNextNode() {
+            return nextNode;
+        }
+
+        public void setNextNode(Node<T> nextNode) {
+            this.nextNode = nextNode;
+        }
     }
 }
