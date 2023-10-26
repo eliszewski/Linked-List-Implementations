@@ -1,6 +1,6 @@
 # Data structures
 
-Fork this repository and submit your code via pull request.
+My implementation of a singly-linked-list
 
 ## Linked List
 
