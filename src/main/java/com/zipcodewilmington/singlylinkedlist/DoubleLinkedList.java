@@ -42,6 +42,34 @@ public class DoubleLinkedList<T extends Comparable<T>> {
         return false;
     }
 
+    public void remove(int index) {
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Negative index not allowed");
+        }
+        if(index >= size){
+            throw new IllegalStateException("Out of bounds index");
+        }
+
+        if(index == 0){
+            head = head.next;
+            if(size == 1){
+                tail = null;
+            }
+        }else {
+            Node<T> currentNode = head;
+            for (int i = 0; i < index - 1; i++) {
+                currentNode = currentNode.getNext();
+            }
+            Node<T> skippedToNode = currentNode.getNext().getNext();
+            currentNode.setNext(skippedToNode);
+            skippedToNode.setPrev(currentNode);
+            if (index == size - 1) {
+                tail = currentNode;
+            }
+        }
+        size--;
+    }
+
 
     private static class Node<T extends Comparable<T>> {
             T value;
