@@ -52,9 +52,10 @@ public class DoubleLinkedList<T extends Comparable<T>> {
 
         if(index == 0){
             head = head.next;
-            head.next.setPrev(null);
             if(size == 1){
                 tail = null;
+            }else{
+                head.next.setPrev(null);
             }
         } else {
             Node<T> currentNode = head;
